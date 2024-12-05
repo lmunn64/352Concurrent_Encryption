@@ -13,7 +13,7 @@ void reset_finished();
 /* You must use these functions to perform all I/O, encryption and counting
  * operations.
  */
-void init(char *inputFileName, char *outputFileName, char *logFileName);
+void init(char *inputFileName, char *outputFileName);
 int read_input();
 void write_output(int c);
 void log_counts();
