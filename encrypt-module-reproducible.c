@@ -33,6 +33,7 @@ void *not_random_reset() {
 		sem_wait(sem_char_read);
 		read_count++;
 		if (read_count == 200) {
+			printf("\nread_count: 200 Input total: %d  Output total: %d\n\n", input_total_count, output_total_count);
 			reset_requested();
 			key++;
 			clear_counts();

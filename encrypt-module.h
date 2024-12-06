@@ -26,4 +26,3 @@ int get_input_total_count();
 int get_output_total_count();
 
 #endif // ENCRYPT_H
-

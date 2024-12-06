@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a7e52a63-f03d-427e-860f-aa060c24074b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cypher.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encrypt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/revised.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circular-queue.c" beforeDir="false" afterPath="$PROJECT_DIR$/circular-queue.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/circular-queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/circular-queue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cyper.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cyper.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encrypt-driver.c" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt-driver.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encrypt-module.c" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt-module-reproducible.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encrypt-module.h" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt-module.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encrypt.exe" beforeDir="false" afterPath="$PROJECT_DIR$/encrypt.exe" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2pmhR3lZ3ltJzeWd7WU1uGgZ6m8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7e52a63-f03d-427e-860f-aa060c24074b" name="Changes" comment="" />
+      <created>1733377149397</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733377149397</updated>
+    </task>
+    <servers />
+  </component>
+</project>

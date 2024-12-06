@@ -5,7 +5,7 @@
 typedef struct circular_queue{
     int head; //read index
     int tail; //consume index (% size for array location)
-    int counter; //counting index
+    bool counted; //counting index
     int size;
     char *queue;
 } c_queue;
@@ -20,7 +20,7 @@ bool can_consume(c_queue* q);
 bool can_read(c_queue* q);
 
 //if head past counter, then can count
-bool can_count(c_queue* q);
+bool has_been_counted(c_queue* q);
 
 //consume a value and move tail
 char consume(c_queue* q);

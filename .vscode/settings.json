@@ -2,6 +2,10 @@
     "files.associations": {
         "stdlib.h": "c",
         "time.h": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "string.h": "c",
+        "stat.h": "c",
+        "stdio.h": "c",
+        "circular-queue.h": "c"
     }
 }
