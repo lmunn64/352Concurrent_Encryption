@@ -59,7 +59,6 @@ int read_input() {
 
 void write_output(int c) {
 	fputc(c, output_file);
-	usleep(10000);
 }
 
 int encrypt(int c) {

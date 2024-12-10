@@ -67,21 +67,21 @@ void print_counts(){
 void reset_requested() {
 	pthread_mutex_lock(&reader_pause_mutex);
 	reset_request = true;
-	while(output_queue->queue[output_queue->tail] != checker && input_queue->queue[input_queue->tail] != checker ){
+	while((output_queue->tail != output_queue->head && get_input_total_count() != get_output_total_count()) || (input_queue->tail != input_queue->head && get_input_total_count() != get_output_total_count())){
 		printf("reset help\n");
-		pthread_cond_wait(&io_equal_cond, &input_mutex);
+		pthread_cond_wait(&io_equal_cond, &reader_pause_mutex);
 	}
-	print_counts();
+	log_counts();
 	pthread_mutex_unlock(&reader_pause_mutex);
 	
 }
 
 void reset_finished() {
-	// pthread_mutex_lock(&input_mutex);
-	// reset_request = false;
-	// pthread_mutex_unlock(&input_mutex);
-	// pthread_cond_signal(&reset_complete_cond);
-	// printf("Reset finished.\n");
+	pthread_mutex_lock(&reader_pause_mutex);
+	reset_request = false;
+	pthread_mutex_unlock(&reader_pause_mutex);
+	pthread_cond_signal(&reader_pause_cond);
+	printf("Reset finished.\n");
 }
 
 
@@ -256,12 +256,12 @@ void *input_counter(void *arg){
 		// 	printf("Input Counter: counted == c");
 		// 	input_last_count = true;
 		// }
-		// if(output_last_count && input_last_count){
-		// 	printf("OUTPUT: Sent equal IO REQUEST\n");
-		// 	pthread_cond_signal(&io_equal_cond);
-		// }
-		// pthread_mutex_unlock(&reader_pause_mutex);
 
+		// pthread_mutex_unlock(&reader_pause_mutex);
+		if((output_queue->tail == output_queue->head && get_input_total_count() == get_output_total_count()) || (input_queue->tail == input_queue->head && get_input_total_count() == get_output_total_count())){
+			printf("INPUT: Sent equal IO REQUEST\n");
+			pthread_cond_signal(&io_equal_cond);		
+		}
 		if(counted == EOF){
 			break;
 		}	
@@ -299,8 +299,12 @@ char counted;
 		
 		printf("Total input count with current key is %d\n", get_input_total_count());
 		printf("Total output count with current key is %d\n", get_output_total_count());
-		printf("Current c value is >>>>>>>>>>%c<<<<<<<<<<\n", checker);
+		printf("Output head output tail: %d %d", output_queue->head, output_queue->tail);
 
+		if((output_queue->tail == output_queue->head && get_input_total_count() == get_output_total_count()) || (input_queue->tail == input_queue->head && get_input_total_count() == get_output_total_count())){
+			printf("OUTPUT: Sent equal IO REQUEST\n");
+			pthread_cond_signal(&io_equal_cond);		
+		}
 		// pthread_mutex_lock(&reader_pause_mutex);
 		// if(counted == encrypt(checker)){
 		// 	printf("Input Counter: counted == checker");
@@ -326,7 +330,7 @@ int main(int argc, char *argv[]) {
 	char* out;
 	char* log;
 	
-	if(argc != 3){
+	if(argc != 4){
 		printf("%d arguments not sufficient for required 3 arguments", argc);
 		return 0;
 	}
@@ -349,7 +353,7 @@ int main(int argc, char *argv[]) {
 	output_queue = new_c_queue(outputSize);
 	
 	//INIT PTHREADS
-	init(in, out); 
+	init(in, out, log); 
 
 	pthread_t readr, inp, encrypt, outp, write;
 	//INIT PTHREAD MUTEX
@@ -392,7 +396,21 @@ int main(int argc, char *argv[]) {
 
 
 	printf("Threads are done\n");
+	//DESTROY MUTEX AND CONDS
+	pthread_mutex_destroy(&input_mutex);
+	pthread_mutex_destroy(&output_mutex);
+	pthread_mutex_destroy(&reader_pause_mutex);
 
+	pthread_cond_destroy(&input_read_cond);
+	pthread_cond_destroy(&input_consume_cond);
+	pthread_cond_destroy(&input_count_cond);
+	pthread_cond_destroy(&input_counted_cond);
+	pthread_cond_destroy(&output_read_cond);
+	pthread_cond_destroy(&output_consume_cond);
+	pthread_cond_destroy(&output_count_cond);
+	pthread_cond_destroy(&output_counted_cond);
+	pthread_cond_destroy(&reader_pause_cond);
+	pthread_cond_destroy(&io_equal_cond);
 	// while ((c = read_input()) != EOF) { 
 	// 	count_input(c); 
 	// 	c = encrypt(c); 
@@ -400,6 +418,6 @@ int main(int argc, char *argv[]) {
 	// 	write_output(c); 
 	// } 
 	printf("End of file reached.\n"); 
-	print_counts();
+	log_counts();
 }
 
